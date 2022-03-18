@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+
+	<!-- <context:component-scan base-package="controller"/> <<<@controller,@service,@reponsitory,@component 
+		자동검색 -->
+
+
+	<!-- 프로퍼티 네임은 컨트롤러에 세터매소드 ref 는 sevice객체의 변수명 spring member에 survice객체의 
+		아이디 (아이디는 곧 변수명) -->
+	<bean class="controller.RegController">
+		<property name="regService" ref="regService"></property>
+	</bean>
+	
+	<bean class="controller.ListController">
+		<property name="listService" ref="listService"/>
+	</bean>
+	
+	<bean class="controller.DetailController">
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	
+	<bean class="controller.SearchController">
+		<property name="searchService" ref="searchService"></property>
+	</bean>
+	
+</beans>
+	

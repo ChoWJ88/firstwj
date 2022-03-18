@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bookDao">
+
+	<select id="selectByNum" parameterType="Long"
+		resultType="bookDto">
+		select * from BOOK WHERE NUM = #{num}
+	</select>
+
+	<select id="selectAll" resultType="bookDto">
+		select * from "BOOK" order by "NUM"
+	</select>
+	<select id="selectByIsbn" parameterType="String"
+		resultType="bookDto">
+		select * from BOOK where ISBN = #{isbn}
+	</select>
+		<select id="selectByPub" parameterType="String" resultType="bookDto">
+		select * from "BOOK" where "PUB" like '%'||#{pub}||'%' order by "NUM"
+	</select>
+		<select id="selectByBookName" parameterType="String" resultType="bookDto">
+		select * from "BOOK" where "BOOKNAME" like '%'||#{bookname}||'%' order by "NUM"
+	</select>
+		<select id="selectByWriter" parameterType="String" resultType="bookDto">
+		select * from "BOOK" where "WRITER" like '%'||#{writer}||'%' order by "NUM"
+	</select>
+
+	<insert id="insert" parameterType="bookDto">
+		insert into "BOOK" values("BOOK_SEQ".nextval, #{isbn}, #{bookname}, #{writer}, #{pub}, #{price}, #{orifile}, #{savedfile}, #{info})
+		<selectKey keyProperty="num" resultType="Long">
+			select nvl(max(num),0) from "BOOK"
+		</selectKey>
+	</insert>
+
+
+</mapper>
